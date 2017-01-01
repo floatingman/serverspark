@@ -34,11 +34,11 @@
   tags:
     - aur
 
-- name: Install wireshark
-  pacman: name=wireshark-qt state=present
+#- name: Install wireshark
+#  pacman: name=wireshark-qt state=present
 
-- name: Add user to wireshark group
-  user: name={{ user.name }} groups=wireshark append=yes
+#- name: Add user to wireshark group
+#  user: name={{ user.name }} groups=wireshark append=yes
 
 - name: Install socat
   pacman: name=socat state=present
