@@ -8,7 +8,7 @@
   file: path=/etc/systemd/system/plexmediaserver.service.d state=directory
 
 - name: Push Plex socket unit file
-  copy: src=plexmediaserver-service-override.conf dest=/etc/systemd/system/plexmediaserver/override.conf
+  copy: src=plexmediaserver-service-override.conf dest=/etc/systemd/system/plexmediaserver.service.d/override.conf
   notify:
     - reload systemd config
     - restart plexmediaserver
