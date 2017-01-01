@@ -45,7 +45,7 @@ network:
         - 6d05c005-f075-45b8-ad28-81828876ec0e
 
 editors:
-    - gvim
+    - vim
     - emacs
 
 video_drivers:
