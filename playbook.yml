@@ -24,7 +24,7 @@
     #- { role: virtualbox, tags: ['virtualbox'] }
     - { role: hashicorp, tags: ['hashicorp'] }
     - { role: virtualenv, tags: ['virtualenv'] }
-    - { role: cryptshot, tags: ['cryptshot'], when: "cryptshot is defined" }
+    #- { role: cryptshot, tags: ['cryptshot'], when: "cryptshot is defined" }
     - { role: borg, tags: ['borg'] }
     #- { role: tarsnap, tags: ['tarsnap'] }
     - { role: postgresql, tags: ['postgresql'] }
