@@ -1,0 +1,18 @@
+---
+- name: Install poppler-glib
+  pacman: name=poppler-glib state=present
+  tags:
+    - gimp
+
+- name: Install GIMP
+  pacman: name={{ item }} state=present
+  with_items:
+    - gimp
+    - gimp-plugin-gmic
+  tags:
+    - gimp
+
+- name: Install GIMP raw support
+  pacman: name=gimp-ufraw state=present
+  tags:
+    - gimp

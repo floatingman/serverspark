@@ -1,0 +1,8 @@
+---
+- name: Install mongodb
+  pacman: name=mongodb state=present
+  tags:
+    - mongodb
+
+- name: Start and Enable mongodb service
+  service: name=mongodb.service enabled=yes state=started

@@ -1,0 +1,9 @@
+---
+- name: Install aspell English dictionary
+  pacman: name=aspell-en state=present
+
+- name: Install weechat
+  pacman: name=weechat state=present
+
+- name: Install dunst
+  pacman: name=dunst state=present

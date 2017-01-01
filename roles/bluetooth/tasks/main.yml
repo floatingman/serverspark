@@ -1,0 +1,15 @@
+---
+- name: Install Bluez
+  pacman: name=bluez state=present
+  tags:
+    - bluetooth
+
+- name: Install Bluez-utils
+  pacman: name=bluez-utils
+  tags:
+    - bluetooth
+
+- name: Install blueman
+  pacman: name=blueman
+  tags:
+    - bluetooth

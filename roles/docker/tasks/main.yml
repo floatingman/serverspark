@@ -1,0 +1,13 @@
+---
+- name: Install Docker git
+  aur: name=docker-git user={{ user.name }}
+  tags:
+    - aur
+
+- name: Enable Docker service
+  service: name=docker.service enabled=no
+  tags:
+    - aur
+
+- name: Add user to the docker group
+  user: name={{ user.name }} groups=docker append=yes

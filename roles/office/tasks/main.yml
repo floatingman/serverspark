@@ -1,0 +1,42 @@
+---
+- name: Install LibreOffice
+  pacman: name=libreoffice-fresh state=present
+
+- name: Install Zathura and dependencies
+  pacman: name={{ item }} state=present
+  with_items:
+    - zathura-pdf-mupdf
+    - zathura-ps
+    - zathura-cb
+    - zathura-djvu
+
+name: Set Zathura as default PDF viewer
+  lineinfile: dest=/etc/xdg/mimeapps.list
+              regexp=^application/pdf
+              state=present
+              line="application/pdf=zathura.desktop"
+
+- name: Install Zathura epub
+  aur: name=zathura-epub-git user={{ user.name }}
+  tags:
+    - aur
+    
+- name: Install enscript
+  pacman: name=enscript state=present
+
+- name: Install Simple Scan
+  pacman: name=simple-scan state=present
+
+- name: Install pandoc
+  pacman: name=pandoc state=present
+
+- name: Install texlive-core
+  pacman: name=texlive-core state=present
+
+- name: Install masterpdfeditor-qt5
+  aur: name=masterpdfeditor-qt5 user={{ user.name }}
+  tags:
+    - aur
+
+- name: Install pdfgrep
+  pacman: name=pdfgrep state=present

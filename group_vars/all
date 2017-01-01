@@ -1,0 +1,152 @@
+user:
+    name: dnewman
+    uid: 1000
+    group: dnewman
+    shell: /bin/bash
+    email: dwnewman78@gmail.com
+    log_dir: log
+
+hostname: strongarm
+
+dotfiles:
+   url: git@github.com:floatingman/dotfiles.git
+   rcup_flags: -x README.md
+
+aur:
+    dir: aur
+    packages:
+        - aura-bin
+        - downgrade
+        - orpie
+        - overdue
+        - fasd
+        - fzf-git
+        - fzf-extras-git
+        - zplug
+
+ssh:
+    port: 22
+    user_key: /root/.ssh/id_rsa
+    enable_sshd: True
+
+mail:
+    sync_tool: isync
+    sync_pim: True
+    sync_taskwarrior: True
+    sync_time: 5min
+    sync_boot_delay: 2min
+    sync_on: trusted
+
+network:
+    spoof_mac: True
+    trusted_uuid:
+        - 9c5b22dc-4351-48a2-84ec-dbb7dd7cc4a1
+        - f0b926dd-5cc9-4922-9a00-465c799c767b
+        - 6d05c005-f075-45b8-ad28-81828876ec0e
+
+editors:
+    - gvim
+    - emacs
+
+video_drivers:
+    - libva-intel-driver
+
+base_packages:
+    - base-devel
+    - tmux
+    - git
+    - gnupg
+    - rsync
+    - glances
+    - coreutils
+    - moreutils
+    - pass
+    - reflector
+    - bc
+    - ranger
+    - strace
+    - lsof
+    - sysstat
+    - arch-wiki-lite
+    - python-keyring
+    - python-secretstorage
+    - fabric
+    - tig
+    - ruby
+    - pv
+    - minicom
+    - jq
+    - autojump
+    - rxvt-unicode
+    - the_silver_searcher
+    - python-docs
+    - python2-docs
+    - htop
+    - atop
+    - hunspell-en
+
+python_packages:
+    - python2
+    - python
+    - ipython
+    - ipython2
+    - python-setuptools
+    - python2-setuptools
+
+filesystem_packages:
+    - dosfstools
+    - hfsprogs
+    - ntfs-3g
+    - exfat-utils
+
+browser_choices:
+    - firefox -P default
+    - firefox -P work
+    - chromium
+    - tor-browser-en
+    - play
+    - qcode
+
+passwordless_sudo:
+    - /usr/bin/openvpn*
+
+tarsnapper:
+  deltas: 1h 6h 1d 7d 30d 365d
+  timer:
+    schedule: hourly
+    run_on: trusted
+
+gitannex:
+    stop_on_untrusted: True
+
+bitlbee:
+    run_on: trusted
+    torify: True
+
+bootloader: grub
+
+postgresql:
+    enable: True
+
+fingerprint: False
+
+tor:
+    run_on: trusted
+
+localtime:
+    run_on: trusted
+
+nameservers:
+    - 192.168.0.1     # Internal
+    - 8.8.8.8         # google
+    - 156.154.71.1    # UltraDNS-2
+    - 129.250.35.250  # Hurricane Electric
+
+bluetooth: True
+
+journal:
+    max_size: 500M
+
+udisks:
+    auto_mount: False
+    shared_mount: True

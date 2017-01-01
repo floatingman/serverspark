@@ -1,0 +1,7 @@
+---
+- name: Install python virtualenv
+  pip:
+    name: "virtualenv{% if python_virtualenv_version is defined %}=={{python_virtualenv_ersion}}{% endif %}"
+    state: present
+  tags:
+    - python

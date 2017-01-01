@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Tarsnapper Synchronization Timer
+
+[Timer]
+Unit=tarsnapper.service
+OnCalendar={{ tarsnapper.timer.schedule }}
+Persistent=True
+
+[Install]
+WantedBy=timers.target
