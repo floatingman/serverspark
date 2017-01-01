@@ -29,7 +29,7 @@
     #- { role: tarsnap, tags: ['tarsnap'] }
     - { role: postgresql, tags: ['postgresql'] }
     - { role: aws, tags: ['aws'] }
-    - { role: parcimonie, tags: ['parcimonie'], when: "tor is defined" }
+    #- { role: parcimonie, tags: ['parcimonie'], when: "tor is defined" }
     #- { role: localtime, tags: ['localtime'], when: "localtime is defined"  }
     - { role: wormhole, tags: ['wormhole'] }
     - { role: dropbox, tags: ['dropbox'] }
