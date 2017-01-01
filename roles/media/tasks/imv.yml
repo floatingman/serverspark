@@ -1,6 +1,0 @@
----
-- name: Install imv
-  aur: name=imv user={{ user.name }}
-  tags:
-    - aur
-    - imv
