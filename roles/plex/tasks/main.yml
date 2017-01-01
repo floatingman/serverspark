@@ -7,3 +7,12 @@
 - name: Create Plex systemd unit file directory
   file: path=/etc/systemd/system/plexmediaserver.service.d state=directory
 
+- name: Push Plex socket unit file
+  copy: src=plexmediaserver-service-override.conf dest=/etc/systemd/system/plexmediaserver/override.conf
+  notify:
+    - reload systemd config
+    - restart plexmediaserver
+
+- name: Enable and start Plex Media Server
+  service: name=plexmediaserver.service enabled=yes state=started
+
