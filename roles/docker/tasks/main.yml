@@ -1,11 +1,11 @@
 ---
-- name: Install Containerd-git
-  aur: name=containerd-git user={{ user.name }}
-  tags:
-    - aur
-
 - name: Install Runc-git
   aur: name=runc-git user={{ user.name }}
+  tags:
+    - aur
+    
+- name: Install Containerd-git
+  aur: name=containerd-git user={{ user.name }}
   tags:
     - aur
 
