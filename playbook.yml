@@ -37,6 +37,7 @@
     - { role: python, tags: ['python']}
     - { role: mongodb, tags: ['mongodb'] }
     - { role: haskell, tags: ['haskell'] }
+    - { role: plex, tags: ['plex'] }
   vars_prompt:
     - name: user_password
       prompt: "Enter desired user password"
