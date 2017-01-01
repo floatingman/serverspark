@@ -1,0 +1,9 @@
+---
+- name: Install Samba
+  pacman: name=samba state=present
+
+- name: Copy Samba config
+  copy: src=smb.conf dest=/etc/samba/smb.conf
+
+- name: Enable and start Samba
+  service: name=smbd.service enabled=yes state=started
