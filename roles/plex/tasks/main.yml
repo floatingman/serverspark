@@ -1,0 +1,9 @@
+---
+- name: Install Plex Media Server PlexPass version
+  aur: name=plex-media-server-plexpass user={{ user.name }}
+  tags:
+    - aur
+
+- name: Create Plex systemd unit file directory
+  file: path=/etc/systemd/system/plexmediaserver.service.d state=directory
+
