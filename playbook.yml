@@ -9,7 +9,7 @@
     - { role: ssh, tags: ['ssh'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: ssd, tags: ['ssd'] }
-    - { role: iptables, tags: ['iptables'] }
+    #- { role: iptables, tags: ['iptables'] }
     - { role: nettools, tags: ['nettools'] }
     - { role: ntp, tags: ['ntp'] }
     #- { role: tor, tags: ['tor'], when: "tor is defined" }
