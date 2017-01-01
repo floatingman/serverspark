@@ -17,9 +17,8 @@ aur:
     packages:
         - aura-bin
         - downgrade
-        - orpie
+        #- orpie
         - overdue
-        - fasd
         - fzf-git
         - fzf-extras-git
         - zplug
@@ -49,11 +48,12 @@ editors:
     - emacs
 
 video_drivers:
-    - libva-intel-driver
+    - xf86-video-ati
 
 base_packages:
     - base-devel
     - tmux
+    - fasd
     - git
     - gnupg
     - rsync
