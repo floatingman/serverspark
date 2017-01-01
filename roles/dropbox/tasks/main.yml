@@ -10,4 +10,4 @@
     - aur
 
 - name: Symlink personal directory
-  file: src=/home/{{ user.name }}/Dropbox/personal dest=/home/{{ user.name }}/personal state=link owner={{ user.name }} group={{ user.group }}
+  file: src=/home/{{ user.name }}/Dropbox/personal dest=/home/{{ user.name }}/personal state=link owner={{ user.name }} group={{ user.group }} force=yes
