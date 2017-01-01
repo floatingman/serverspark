@@ -6,7 +6,7 @@ user:
     email: dwnewman78@gmail.com
     log_dir: log
 
-hostname: strongarm
+hostname: shockwave
 
 dotfiles:
    url: git@github.com:floatingman/dotfiles.git
@@ -98,14 +98,6 @@ filesystem_packages:
     - hfsprogs
     - ntfs-3g
     - exfat-utils
-
-browser_choices:
-    - firefox -P default
-    - firefox -P work
-    - chromium
-    - tor-browser-en
-    - play
-    - qcode
 
 passwordless_sudo:
     - /usr/bin/openvpn*
