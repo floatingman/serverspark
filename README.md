@@ -1,4 +1,4 @@
-# Spark
+# ServerSpark
 
 ServerSpark is an [Ansible][1] playbook meant to provision a personal machine running
 [Arch Linux][2]. It is intended to run locally on a fresh Arch install (ie,
