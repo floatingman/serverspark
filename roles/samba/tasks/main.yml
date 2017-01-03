@@ -7,3 +7,6 @@
 
 - name: Enable and start Samba
   service: name=smbd.service enabled=yes state=started
+
+- name: Enable and start nmbd
+  service: name=nmbd.service enabled=yes state=started
