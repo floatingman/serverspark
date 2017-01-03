@@ -1,16 +1,11 @@
 # Spark
 
-Spark is an [Ansible][1] playbook meant to provision a personal machine running
+ServerSpark is an [Ansible][1] playbook meant to provision a personal machine running
 [Arch Linux][2]. It is intended to run locally on a fresh Arch install (ie,
 taking the place of any [post-installation][3]), but due to Ansible's
 idempotent nature it may also be run on top of an already configured machine.
 
-Spark assumes it will be run on a laptop and performs some configuration based
-on this assumption. This behaviour may be changed by removing the `laptop` role
-from the playbook or by skipping the `laptop` tag.
-
-If Spark is run on either a ThinkPad or a MacBook, it will detect this and
-execute platform-specific tasks.
+ServerSpark assumes it will be run on a headless server and performs some configuration based on this assumption.
 
 ## Running
 
@@ -33,8 +28,8 @@ will have no effect.
 
 ## SSH
 
-By default, Ansible will attempt to install the private SSH key for the user. The
-key should be available at the path specified in the `ssh.user_key` variable.
+By default, Ansible will attempt to install the private SSH key for the user. The key should be available at the path specified in the 
+`ssh.user_key` variable.
 Removing this variable will cause the key installation task to be skipped.
 
 ### SSHD
@@ -63,97 +58,6 @@ AUR packages are installed via the [ansible-aur][7] module. Note that while
 [aura][8], an [AUR helper][9], is installed by default, it will *not* be used
 during any of the provisioning.
 
-## MAC Spoofing
-
-By default, the MAC address of all network interfaces is spoofed at boot,
-before any network services are brought up. This is done with [macchiato][11],
-which uses legitimate OUI prefixes to make the spoofing less recognizable.
-
-MAC spoofing is desirable for greater privacy on public networks, but may be
-inconvenient on home or corporate networks where a consistent (if not real) MAC
-address is wanted for authentication. To work around this, allow `macchiato` to
-randomize the MAC on boot, but tell NetworkManager to clone the real (or a fake
-but consistent) MAC address in its profile for the trusted networks. This can
-be done in the GUI by populating the "Cloned MAC address" field for the
-appropriate profiles, or by setting the `cloned-mac-address` property in the
-profile file at `/etc/NetworkManager/system-connections/`.
-
-Spoofing may be disabled entirely by setting the `network.spoof_mac` variable
-to `False`.
-
-## Trusted Networks
-
-The trusted network framework provided by [nmtrust][12] is leveraged to start
-certain systemd units when connected to trusted networks, and stop them
-elsewhere.
-
-This helps to avoid leaking personal information on untrusted networks by
-ensuring that certain network tasks are not running in the background.
-Currently, this is used for mail syncing (see the section below on Syncing and
-Scheduling Mail), Tarsnap backups (see the section below on Scheduling
-Tarsnap), BitlBee (see the section below on BitlBee), and git-annex (see the
-section below on git-annex).
-
-Trusted networks are defined using their NetworkManager UUIDs, configured in
-the `network.trusted_uuid` list. NetworkManager UUIDs may be discovered using
-`nmcli con`.
-
-
-## Mail
-
-### Receiving Mail
-
-Receiving mail is supported by syncing from IMAP servers via both [isync][13]
-and [OfflineIMAP][14]. By default isync is enabled, but this can be changed to
-OfflineIMAP by setting the value of the `mail.sync_tool` variable to
-`offlineimap`.
-
-### Sending Mail
-
-[msmtp][15] is used to send mail. Included as part of msmtp's documentation are
-a set of [msmtpq scripts][16] for queuing mail. These scripts are copied to the
-user's path for use. When calling `msmtpq` instead of `msmtp`, mail is sent
-normally if internet connectivity is available. If the user is offline, the
-mail is saved in a queue, to be sent out when internet connectivity is again
-available. This helps support a seamless workflow, both offline and online.
-
-### System Mail
-
-If the `email.user` variable is defined, the system will be configured to
-forward mail for the user and root to this address. Removing this variable will
-cause no mail aliases to be put in place.
-
-The cron implementation is configured to send mail using `msmtp`.
-
-### Syncing and Scheduling Mail
-
-A shell script called `mailsync` is included to sync mail, by first sending any
-mail in the msmtp queue and then syncing with the chosen IMAP servers via
-either isync or OfflineIMAP. The script will also attempt to sync contacts and
-calendars via [vdirsyncer][17]. To disable this behavior, set the
-`mail.sync_pim` variable to `False`.
-
-Before syncing, the `mailsync` script checks for internet connectivity using
-NetworkMananger. `mailsync` may be called directly by the user, ie by
-configuring a hotkey in Mutt.
-
-A [systemd timer][18] is also included to periodically call `mailsync`. The
-timer is set to sync every 5 minutes (configurable through the `mail.sync_time`
-variable).
-
-The timer is not started or enabled by default. Instead, the timer is added to
-`/usr/local/etc/trusted_units`, causing the NetworkManager trusted unit
-dispatcher to activate the timer whenever a connection is established to a
-trusted network. The timer is stopped whenever the network goes down or a
-connection is established to an untrusted network.
-
-To have the timer activated at boot, change the `mail.sync_on` variable from
-`trusted` to `all`.
-
-If the `mail.sync_on` variable is set to anything other than `trusted` or
-`all`, the timer will never be activated.
-
-
 ## Tarsnap
 
 [Tarsnap][19] is installed with its default configuration file. However,
@@ -173,98 +77,11 @@ details.
 
 A systemd unit file and timer are included for Tarsnapper. The timer is set to
 execute Tarsnapper hourly (configurable through the `tarsnapper.timer.schedule`
-variable). However, as with `mailsync` this timer is not started or enabled by
-default. Instead, the timer is added to `/usr/local/etc/trusted_units`, causing
-the NetworkManager trusted unit dispatcher to activate the timer whenever a
-connection is established to a trusted network. The timer is stopped whenever
-the network goes down or a connection is established to an untrusted network.
-
-To have the timer activated at boot, change the `tarsnapper.timer.run_on`
-variable from `trusted` to `all`.
-
-If the `tarsnapper.tarsnap.run_on` variable is set to anything other than
-`trusted` or `all`, the timer will never be activated.
-
-
-## Tor
-
-[Tor][22] is installed by default. A systemd service unit for Tor is installed,
-but not enabled or started. instead, the service is added to
-`/usr/local/etc/trusted_units`, causing the NetworkManager trusted unit
-dispatcher to activate the service whenever a connection is established to a
-trusted network. The service is stopped whenever the network goes down or a
-connection is established to an untrusted network.
-
-To have the service activated at boot, change the `tor.run_on` variable
-from `trusted` to `all`.
-
-If you do not wish to use Tor, simply remove the `tor` variable from the
-configuration.
-
-### parcimonie.sh
-
-[parcimonie.sh][23] is provided to periodically refresh entries in the user's
-GnuPG keyring over the Tor network. The service is added to
-`/usr/local/etc/trusted_units` and respects the `tor.run_on` variable.
-
-
-## BitlBee
-
-[BitlBee][24] and [WeeChat][25] are used to provide chat services. A systemd
-service unit for BitlBee is installed, but not enabled or started by default.
-Instead, the service is added to `/usr/local/etc/trusted_units`, causing the
-NetworkManager trusted unit dispatcher to activate the service whenever a
-connection is established to a trusted network. The service is stopped whenever
-the network goes down or a connection is established to an untrusted network.
-
-To have the service activated at boot, change the `bitlbee.run_on` variable
-from `trusted` to `all`.
-
-If the `bitlbee.run_on` variable is set to anything other than `trusted` or
-`all`, the service will never be activated.
-
-By default BitlBee will be configured to proxy through Tor. To disable this,
-remove the `bitlebee.torify` variable or disable Tor entirely by removing the
-`tor` variable.
-
-## git-annex
-
-[git-annex][26] is installed for file syncing. A systemd service unit for the
-git-annex assistant is enabled and started by default. To prevent this, remove
-the `gitannex` variable from the config.
-
-Additionally, the git-annex unit is added to `/usr/local/etc/trusted_units`,
-causing the NetworkManager trusted unit dispatcher to activate the service
-whenever a connection is established to a trusted network. The service is
-stopped whenever a connection is established to an untrusted network. Unlike
-other units using the trusted network framework, the git-annex unit is also
-activated when there are no active network connections. This allows the
-git-annex assistant to be used when on trusted networks and when offline, but
-not when on untrusted networks.
-
-If the `gitannex.stop_on_untrusted` variable is set to anything other than
-`True` or is not defined, the git-annex unit will not be added to the trusted
-unit file, resulting in the git-annex assistant not being stopped on untrusted
-networks.
-
-## PostgreSQL
-
-[PostgreSQL][27] is installed and enabled by default. If the
-`postgresql.enable` variable is set to anything other than `True` or is not
-defined, the service will not be started or enabled.
-
-This is intended for local development. PostgreSQL is configured to only listen
-on localhost and no additional ports are opened in the default firewall. This
-configuration means that PostgreSQL is not a network service. As such, the
-PostgreSQL service is not added to `/usr/local/etc/trusted_units`.
-
-Additional configuration options are set which improve performance but make the
-database service inappropriate for production use.
-
+variable). 
 
 ## Adding custom pacman repositories
 
-Take a look in the infinality and haskell roles for examples on adding custom repositories that need signed keys
+Take a look in the haskell roles for examples on adding custom repositories that need signed keys
 
 [1]: http://www.ansible.com
 [2]: https://www.archlinux.org
