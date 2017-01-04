@@ -28,21 +28,6 @@ ssh:
     user_key: /root/.ssh/id_rsa
     enable_sshd: True
 
-mail:
-    sync_tool: isync
-    sync_pim: True
-    sync_taskwarrior: True
-    sync_time: 5min
-    sync_boot_delay: 2min
-    sync_on: trusted
-
-network:
-    spoof_mac: True
-    trusted_uuid:
-        - 9c5b22dc-4351-48a2-84ec-dbb7dd7cc4a1
-        - f0b926dd-5cc9-4922-9a00-465c799c767b
-        - 6d05c005-f075-45b8-ad28-81828876ec0e
-
 editors:
     - vim
     - emacs
@@ -83,6 +68,7 @@ base_packages:
     - python2-docs
     - htop
     - atop
+    - hunspell
     - hunspell-en
 
 python_packages:
@@ -108,9 +94,6 @@ tarsnapper:
     schedule: hourly
     run_on: trusted
 
-gitannex:
-    stop_on_untrusted: True
-
 bitlbee:
     run_on: trusted
     torify: True
@@ -120,21 +103,13 @@ bootloader: grub
 postgresql:
     enable: True
 
-fingerprint: False
-
-tor:
-    run_on: trusted
-
-localtime:
-    run_on: trusted
-
 nameservers:
     - 192.168.0.1     # Internal
     - 8.8.8.8         # google
     - 156.154.71.1    # UltraDNS-2
     - 129.250.35.250  # Hurricane Electric
 
-bluetooth: True
+bluetooth: False
 
 journal:
     max_size: 500M
