@@ -28,6 +28,7 @@
     - { role: haskell, tags: ['haskell'] }
     - { role: plex, tags: ['plex'] }
     - { role: samba, tags: ['samba'] }
+    - { role: rbenv, tags: ['rbenv'] }
   vars_prompt:
     - name: user_password
       prompt: "Enter desired user password"

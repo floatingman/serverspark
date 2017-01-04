@@ -1,3 +1,6 @@
 [submodule "library/ansible-aur"]
 	path = library/ansible-aur
 	url = https://github.com/pigmonkey/ansible-aur.git
+[submodule "roles/rbenv"]
+	path = roles/rbenv
+	url = https://github.com/zzet/ansible-rbenv-role.git
