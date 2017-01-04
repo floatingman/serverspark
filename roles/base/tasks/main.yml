@@ -9,6 +9,9 @@
   hostname: name={{ hostname }}
   when: hostname is defined
 
+- name: blacklist pc speaker
+  copy: src=nobeep.conf dest=/etc/modprobe.d/nobeep.conf
+
 - include: shell.yml
 - include: user.yml
 - include: sudo.yml
