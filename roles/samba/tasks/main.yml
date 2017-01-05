@@ -10,3 +10,12 @@
 
 - name: Enable and start nmbd
   service: name=nmbd.service enabled=yes state=started
+
+- name: Create Samba users if they don't exist yet
+  shell: >
+    (pdbedit -L | grep {{ user.name }} 2>&1 > /dev/null) \
+    || (echo {{ user_password }}; echo {{ user_password }}) \
+    | smbpasswd -s -a {{ user.name }}
+  with_items: "{{ user.name }}"
+  register: create_user_output
+  changed_when: "'Added user' in create_user_output.stdout"
