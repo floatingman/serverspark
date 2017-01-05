@@ -22,6 +22,8 @@ aur:
         - fzf-git
         - fzf-extras-git
         - zplug
+        - youtube-dl-git
+
 
 ssh:
     port: 22
