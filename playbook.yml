@@ -29,6 +29,7 @@
     - { role: plex, tags: ['plex'] }
     - { role: samba, tags: ['samba'] }
     - { role: rbenv, tags: ['rbenv'] }
+    - { role: sabnzbd, tags: ['sabnzbd'] }
   vars_prompt:
     - name: user_password
       prompt: "Enter desired user password"
