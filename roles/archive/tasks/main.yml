@@ -24,8 +24,8 @@
     - aur
     - hashdeep
 
-- name: Install par2cmdline
-  pacman: name=par2cmdline state=present
+- name: Install par2cmdline-tbb
+  aur: name=par2cmdline-tbb user={{ user.name }}
   tags:
     - par2
 
