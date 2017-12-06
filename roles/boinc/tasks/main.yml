@@ -1,0 +1,15 @@
+---
+- name: Install boinc
+  pacman: name=boinc-nox state=present
+  tags:
+    - boinc
+
+- name: Install boinc client
+  pacman: name=boinctui state=present
+  tags:
+    - boinc
+
+- name: Enable boinc service
+  service: name=boinc.service enabled=yes state=started
+  tags:
+    - boinc

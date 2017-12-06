@@ -1,23 +1,25 @@
 ---
-- name: Install Runc-git
-  aur: name=runc-git user={{ user.name }}
+- name: Install Runc
+  pacman: name=runc state=present
   tags:
-    - aur
-    
-- name: Install Containerd-git
-  aur: name=containerd-git user={{ user.name }}
-  tags:
-    - aur
+    - docker
 
-- name: Install Docker git
-  aur: name=docker-git user={{ user.name }}
+- name: Install Containerd
+  pacman: name=containerd state=present
   tags:
-    - aur
+    - docker
+
+- name: Install Docker
+  pacman: name=docker state=present
+  tags:
+    - docker
 
 - name: Enable Docker service
   service: name=docker.service enabled=no
   tags:
-    - aur
+    - docker
 
 - name: Add user to the docker group
   user: name={{ user.name }} groups=docker append=yes
+  tags:
+    - docker
