@@ -17,7 +17,7 @@
     - { role: rtorrent, tags: ['rtorrent'] }
     - { role: hashicorp, tags: ['hashicorp'] }
     - { role: virtualenv, tags: ['virtualenv'] }
-    - { role: borg, tags: ['borg'] }
+    # - { role: borg, tags: ['borg'] }
     - { role: postgresql, tags: ['postgresql'] }
     - { role: aws, tags: ['aws'] }
     - { role: wormhole, tags: ['wormhole'] }
@@ -32,6 +32,7 @@
     - { role: rbenv, tags: ['rbenv'] }
     - { role: sabnzbd, tags: ['sabnzbd'] }
     - { role: boinc, tags: ['boinc'] }
+    - { role: games, tags: ['games'] }
   vars_prompt:
     - name: user_password
       prompt: "Enter desired user password"

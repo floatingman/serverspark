@@ -1,0 +1,12 @@
+---
+- name: Install Spigot for minecraft server
+  aur: name=spigot user={{ user.name }}
+  tags:
+    - aur
+    - games
+
+- name: Install Minecraft mapper
+  aur: name=mapcrafter user={{ user.name }}
+  tags:
+    - aur
+    - games

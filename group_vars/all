@@ -15,15 +15,15 @@ dotfiles:
 aur:
     dir: aur
     packages:
-        - aura-bin
+        - yay
         - downgrade
-        #- orpie
-        - overdue
         - fzf-git
         - fzf-extras-git
         - zplug
-        - youtube-dl-git
-
+        - miller
+        - myrepos
+        - ctmg
+        - emacs-git
 
 ssh:
     port: 22
@@ -32,7 +32,6 @@ ssh:
 
 editors:
     - vim
-    - emacs
 
 video_drivers:
     - xf86-video-ati
@@ -71,7 +70,8 @@ base_packages:
     - htop
     - atop
     - hunspell
-    - hunspell-en
+    - hunspell-en_US
+    - youtube-dl
 
 python_packages:
     - python2
@@ -96,6 +96,9 @@ tarsnapper:
     schedule: hourly
     run_on: trusted
 
+gitannex:
+    stop_on_untrusted: False
+
 bitlbee:
     run_on: trusted
     torify: True
@@ -104,6 +107,7 @@ bootloader: grub
 
 postgresql:
     enable: True
+    root: /home/postgres
 
 nameservers:
     - 192.168.0.1     # Internal
