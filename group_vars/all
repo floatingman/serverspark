@@ -31,7 +31,7 @@ ssh:
     enable_sshd: True
 
 editors:
-    - vim
+    - neovim
 
 video_drivers:
     - xf86-video-ati
@@ -72,6 +72,7 @@ base_packages:
     - hunspell
     - hunspell-en_US
     - youtube-dl
+    - shellcheck
 
 python_packages:
     - python2
