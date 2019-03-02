@@ -10,6 +10,6 @@
     - boinc
 
 - name: Enable boinc service
-  service: name=boinc.service enabled=yes state=started
+  service: name=boinc-client.service enabled=yes state=started
   tags:
     - boinc

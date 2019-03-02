@@ -6,10 +6,13 @@
   copy: src=smb.conf dest=/etc/samba/smb.conf
 
 - name: Enable and start Samba
-  service: name=smbd.service enabled=yes state=started
+  service: name=smb.service enabled=yes state=started
 
 - name: Enable and start nmbd
-  service: name=nmbd.service enabled=yes state=started
+  service: name=nmb.service enabled=yes state=started
+
+- name: Enable wait online systemd service
+  service: name=systemd-networkd-wait-online.service enabled=yes state=started
 
 - name: Create Samba users if they don't exist yet
   shell: >
@@ -19,3 +22,4 @@
   with_items: "{{ user.name }}"
   register: create_user_output
   changed_when: "'Added user' in create_user_output.stdout"
+

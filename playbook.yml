@@ -17,15 +17,13 @@
     - { role: rtorrent, tags: ['rtorrent'] }
     - { role: hashicorp, tags: ['hashicorp'] }
     - { role: virtualenv, tags: ['virtualenv'] }
-    # - { role: borg, tags: ['borg'] }
     - { role: postgresql, tags: ['postgresql'] }
     - { role: aws, tags: ['aws'] }
     - { role: wormhole, tags: ['wormhole'] }
-    - { role: git-annex, tags: ['git-annex'] }
     - { role: dropbox, tags: ['dropbox'] }
     - { role: docker, tags: ['docker'] }
     - { role: python, tags: ['python'] }
-    - { role: mongodb, tags: ['mongodb'] }
+      #- { role: mongodb, tags: ['mongodb'] }
     - { role: haskell, tags: ['haskell'] }
     - { role: plex, tags: ['plex'] }
     - { role: samba, tags: ['samba'] }
