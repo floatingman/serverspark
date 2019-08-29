@@ -73,6 +73,7 @@ base_packages:
     - hunspell-en_US
     - youtube-dl
     - shellcheck
+    - prettyping
 
 python_packages:
     - python2
@@ -126,7 +127,7 @@ udisks:
     shared_mount: True
 
 rbenv:
-  env: user 
+  env: user
   version: v1.1.0
   default_ruby: 2.3.3
   rubies:
