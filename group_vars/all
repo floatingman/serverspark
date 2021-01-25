@@ -15,7 +15,7 @@ dotfiles:
 aur:
     dir: aur
     packages:
-        - yay
+        - paru
         - downgrade
         - fzf-git
         - fzf-extras-git

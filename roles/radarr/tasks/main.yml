@@ -1,0 +1,17 @@
+---
+- name: Install Radarr
+  aur: name=radarr user={{ user.name }}
+  tags:
+    - aur
+
+- name: Create Radarr systemd unit file directory
+  file: path=/etc/systemd/system/radarr.service.d state=directory
+
+- name: Push Radarr socket unit file
+  copy: src=radarr-service-override.conf dest=/etc/systemd/system/radarr.service.d/override.conf
+  notify:
+    - reload systemd config
+    - restart radarr
+
+- name: Enable and start Radarr
+  service: name=radarr.service enabled=yes state=started

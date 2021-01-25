@@ -1,0 +1,3 @@
+---
+- name: restart radarr
+  service: name=radarr state=restarted
