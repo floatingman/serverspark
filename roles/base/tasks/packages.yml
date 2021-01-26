@@ -25,12 +25,6 @@
     - aur
     - packages
 
-- name: Install cower
-  aur: name=cower user={{ user.name }} skip_pgp=yes
-  tags:
-    - aur
-    - packages
-
 - name: Install AUR base packages
   aur: name={{ item }} user={{ user.name }}
   with_items: "{{ aur.packages }}"

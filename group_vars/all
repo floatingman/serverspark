@@ -17,14 +17,10 @@ aur:
     packages:
         - paru
         - downgrade
-        - fzf-git
-        - fzf-extras-git
-        - zplug
         - miller
         - myrepos
         - ctmg
-        - emacs-git
-
+        - lf-git
 ssh:
     port: 22
     user_key: /root/.ssh/id_rsa
@@ -74,6 +70,7 @@ base_packages:
     - youtube-dl
     - shellcheck
     - prettyping
+    - fzf
 
 python_packages:
     - python2
@@ -108,7 +105,7 @@ bitlbee:
 bootloader: grub
 
 postgresql:
-    enable: True
+    enable: False
     root: /home/postgres
 
 nameservers:
