@@ -1,0 +1,7 @@
+---
+- name: Install Dropbox
+  aur:
+    name: dropbox
+    user: "{{ user.name }}"
+  tags:
+    - aur
