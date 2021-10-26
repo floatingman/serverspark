@@ -27,7 +27,9 @@
     - { role: samba, tags: ['samba'] }
     - { role: boinc, tags: ['boinc'] }
     - { role: games, tags: ['games'] }
-    - { role: dropbox, tags: ['dropbox'] }
+    #- { role: dropbox, tags: ['dropbox'] }
+    - { role: syncthing, tags: ['syncthing'] }
+    - { role: ripgrep, tags: ['syncthing'] }
   vars_prompt:
     - name: user_password
       prompt: "Enter desired user password"
