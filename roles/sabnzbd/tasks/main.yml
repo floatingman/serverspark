@@ -1,5 +1,0 @@
----
-- name: Installing sabnzbd
-  aur: name=sabnzbd user={{ user.name }}
-  tags:
-    - aur

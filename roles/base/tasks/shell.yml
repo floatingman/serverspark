@@ -14,3 +14,28 @@
     - zsh-completions
   tags:
     - shell
+
+- name: Install starship
+  pacman:
+    name:
+      - starship
+    state: present
+  tags:
+    - shell
+
+- name: Install shell helpers
+  aur:
+    name:
+      - shell-color-scripts
+      - antibody
+    user: "{{user.name}}"
+  tags:
+    - aur
+    - shell
+
+- name: Install fish
+  pacman:
+    name: fish
+    state: present
+  tags:
+    - shell

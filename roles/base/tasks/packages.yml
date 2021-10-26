@@ -1,7 +1,8 @@
 ---
 - name: Install universal base packages
-  pacman: name={{ item }} state=present
-  with_items: "{{ base_packages }}"
+  pacman:
+    name: "{{ base_packages }}"
+    state: present
   tags:
     - packages
 
@@ -11,10 +12,11 @@
   tags:
     - packages
 
-- name: Push pacman mirror list update hook
-  copy: src=mirrorlist.hook dest=/etc/pacman.d/hooks/mirrorlist.hook
-  tags:
-    - packages
+- name: Use all cores when compressing packages
+  lineinfile:
+    dest: /etc/makepkg.conf
+    regexp: "^COMPRESSXZ"
+    line: "COMPRESSXZ=(xz -c -z - --threads=0)"
 
 - name: Create AUR directory
   file: path=/home/{{ user.name }}/{{ aur.dir }}

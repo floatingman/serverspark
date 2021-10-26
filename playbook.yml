@@ -9,26 +9,22 @@
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: ssd, tags: ['ssd'] }
     - { role: nettools, tags: ['nettools'] }
+    - { role: mirrorlist, tags: ['mirrorlist'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: editors, tags: ['editors'] }
     - { role: filesystems, tags: ['filesystems'] }
     - { role: archive, tags: ['archive'] }
     - { role: udisks, tags: ['udisks'] }
-    - { role: rtorrent, tags: ['rtorrent'] }
     - { role: hashicorp, tags: ['hashicorp'] }
     - { role: virtualenv, tags: ['virtualenv'] }
     - { role: postgresql, tags: ['postgresql'] }
     - { role: aws, tags: ['aws'] }
     - { role: wormhole, tags: ['wormhole'] }
     - { role: docker, tags: ['docker'] }
-      #- { role: python, tags: ['python'] }
     - { role: pydev, tags: ['pydev'] }
-      #- { role: mongodb, tags: ['mongodb'] }
     - { role: haskell, tags: ['haskell'] }
     - { role: plex, tags: ['plex'] }
     - { role: samba, tags: ['samba'] }
-      #    - { role: rbenv, tags: ['rbenv'] }
-      #    - { role: sabnzbd, tags: ['sabnzbd'] }
     - { role: boinc, tags: ['boinc'] }
     - { role: games, tags: ['games'] }
   vars_prompt:

@@ -3,8 +3,10 @@ user:
     uid: 1000
     group: dnewman
     shell: /bin/zsh
-    email: dwnewman78@gmail.com
-    log_dir: log
+    email: dan@danlovesprogramming.com
+    log:
+        dir: log
+        rotate: 8
 
 hostname: windcharger
 
@@ -23,8 +25,12 @@ aur:
       - lf-git
 ssh:
     port: 22
-    user_key: /root/.ssh/id_rsa
+    user_key: /root/id_rsa
     enable_sshd: True
+
+gnupg:
+    enable_agent: True
+    emulate_ssh: True
 
 editors:
     - neovim
@@ -70,7 +76,6 @@ base_packages:
     - shellcheck
     - prettyping
     - fzf
-    - starship
 
 python_packages:
     - python2
@@ -124,24 +129,5 @@ udisks:
     auto_mount: False
     shared_mount: True
 
-rbenv:
-  env: user
-  version: v1.1.0
-  default_ruby: 2.3.3
-  rubies:
-    - version: 2.3.3
-
-rbenv_repo: "https://github.com/rbenv/rbenv.git"
-
-rbenv_plugins:
-  - { name: "rbenv-vars",         repo: "https://github.com/rbenv/rbenv-vars.git",         version: "v1.2.0" }
-  - { name: "ruby-build",         repo: "https://github.com/rbenv/ruby-build.git",         version: "master" }
-  - { name: "rbenv-default-gems", repo: "https://github.com/rbenv/rbenv-default-gems.git", version: "ead67889c91c53ad967f85f5a89d986fdb98f6fb" }
-  - { name: "rbenv-installer",    repo: "https://github.com/rbenv/rbenv-installer.git",    version: "bc21e7055dcc8f5f9bc66ce0c78cc9ae0c28cd7a" }
-  - { name: "rbenv-update",       repo: "https://github.com/rkh/rbenv-update.git",         version: "1961fa180280bb50b64cbbffe6a5df7cf70f5e50" }
-  - { name: "rbenv-whatis",       repo: "https://github.com/rkh/rbenv-whatis.git",         version: "v1.0.0" }
-  - { name: "rbenv-use",          repo: "https://github.com/rkh/rbenv-use.git",            version: "v1.0.0" }
-
-rbenv_root: "{% if rbenv.env == 'system' %}/usr/local/rbenv{% else %}~/.rbenv{% endif %}"
-
-rbenv_users: [dnewman]
+mirrorlist:
+    run_on: all
