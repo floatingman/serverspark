@@ -1,12 +1,6 @@
 ---
 - name: Install magic-wormhole
-  aur: name={{ item }} user={{ user.name }}
-  with_items:
-      - python-hkdf
-      - python-pynacl
-      - python-spake2
-      - python-tqdm
-      - magic-wormhole
-  tags:
-    - aur
-
+  pacman:
+    name: magic-wormhole
+    state: present
+  

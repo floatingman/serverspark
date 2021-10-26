@@ -5,9 +5,25 @@
 - name: Refresh pacman mirrors
   pacman: update_cache=yes
 
+- name: Install inetutils for hostname
+  pacman:
+    name: inetutils
+    state: present
+
 - name: Set the hostname
   hostname: name={{ hostname }}
   when: hostname is defined
+
+- name: Set kernel parameters
+  lineinfile: "dest=/etc/default/grub
+             regexp=^GRUB_CMDLINE_LINUX_DEFAULT
+             state=present
+             line='GRUB_CMDLINE_LINUX_DEFAULT=\"{{ kernel_parameters }}\"'"
+  when: kernel_parameters is defined and bootloader == 'grub'
+  notify:
+    - rebuild grub
+  tags:
+    - kernelparams  
 
 - name: blacklist pc speaker
   copy: src=nobeep.conf dest=/etc/modprobe.d/nobeep.conf

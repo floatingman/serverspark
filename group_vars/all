@@ -2,11 +2,11 @@ user:
     name: dnewman
     uid: 1000
     group: dnewman
-    shell: /bin/bash
+    shell: /bin/zsh
     email: dwnewman78@gmail.com
     log_dir: log
 
-hostname: shockwave
+hostname: windcharger
 
 dotfiles:
    url: git@github.com:floatingman/dotfiles.git
@@ -58,7 +58,6 @@ base_packages:
     - pv
     - minicom
     - jq
-    - autojump
     - rxvt-unicode
     - the_silver_searcher
     - python-docs
@@ -82,7 +81,6 @@ python_packages:
 
 filesystem_packages:
     - dosfstools
-    - hfsprogs
     - ntfs-3g
     - exfat-utils
 
@@ -103,6 +101,8 @@ bitlbee:
     torify: True
 
 bootloader: grub
+
+kernel_parameters: "quiet consoleblank=60 i915.enable_psr=2"
 
 postgresql:
     enable: False

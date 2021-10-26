@@ -6,7 +6,7 @@
     - games
 
 - name: Install Minecraft mapper
-  aur: name=mapcrafter user={{ user.name }}
+  aur: name=mapcrafter-git user={{ user.name }}
   tags:
     - aur
     - games
