@@ -55,6 +55,11 @@
     group: "{{ user.group }}"
   when: ssh.user_key is defined
 
+- name: Install keychain
+  pacman:
+    name: keychain
+    state: present
+
 - name: Install Mosh
   pacman:
     name: mosh
